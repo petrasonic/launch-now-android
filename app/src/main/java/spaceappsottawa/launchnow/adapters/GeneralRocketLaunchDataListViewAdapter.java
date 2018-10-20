@@ -7,7 +7,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import spaceappsottawa.launchnow.R;
 import spaceappsottawa.launchnow.models.Launch;
@@ -68,7 +72,18 @@ public class GeneralRocketLaunchDataListViewAdapter extends BaseAdapter {
         viewHolder.launch_name_textView.setText(item.getName());
         viewHolder.lsp_textView.setText(item.getLaunchServiceProvider().getName());
         viewHolder.country_textView.setText(item.getLocation().getCountryCode());
-        viewHolder.date_textView.setText(item.getWindowStart());
+
+        String formattedDate = item.getWindowStart();
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy HH:mm:ss zzz", Locale.US);
+            Date date = sdf.parse(item.getWindowStart());
+            SimpleDateFormat fmtOut = new SimpleDateFormat("MMMM dd, yyyy", Locale.US);
+            formattedDate =  fmtOut.format(date);
+        } catch (ParseException e) {
+
+        }
+
+        viewHolder.date_textView.setText(formattedDate);
 
         return view;
     }
