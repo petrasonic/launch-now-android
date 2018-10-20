@@ -8,28 +8,28 @@
         android:id="@+id/general_rocket_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="start"
         android:text="Rocket Name" />
 
     <TextView
         android:id="@+id/general_rocket_company"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="start"
         android:text="Company" />
 
     <TextView
         android:id="@+id/general_rocket_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="start"
         android:text="Location" />
 
     <TextView
         android:id="@+id/general_rocket_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="start"
         android:text="Date" />
 
 </LinearLayout>

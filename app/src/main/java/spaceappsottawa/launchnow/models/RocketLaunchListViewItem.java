@@ -29,13 +29,29 @@ public class RocketLaunchListViewItem {
                 JSONObject locationJSONObject = rocketLaunchJSONObject.getJSONObject("location");
                 JSONArray padsJSONArray = locationJSONObject.getJSONArray("pads");
 
-                StringBuilder temp_location = new StringBuilder();
+                StringBuilder final_location = new StringBuilder();
+
+                String temp_location_country_code = "COUNTRY CODE: " + locationJSONObject.getString("countryCode");
+
+                final_location.append(temp_location_country_code).append('\n');;
 
                 for (int i = 0; i < padsJSONArray.length(); i++) {
-                    temp_location.append("PAD Name: ").append(padsJSONArray.getJSONObject(i).getString("name"));
+                    String temp_pad_name = "PAD NAME: ";
+                    String temp_map_url = "MAP URL: ";
+                    temp_pad_name += padsJSONArray.getJSONObject(i).getString("name");
+                    temp_map_url += padsJSONArray.getJSONObject(i).getString("mapURL");
+
+                    final_location.append(temp_pad_name).append('\n');
+                    final_location.append(temp_map_url).append('\n');
+                    JSONArray padAgencies = padsJSONArray.getJSONObject(i).getJSONArray("agencies");
+                    for (int j = 0; j < padAgencies.length(); j++) {
+                        String temp_agency_name = "AGENCY NAME: ";
+                        temp_agency_name += padAgencies.getJSONObject(i).getString("name");
+                        final_location.append(temp_agency_name).append('\n');;
+                    }
                 }
 
-                setLocation(temp_location.toString());
+                setLocation(final_location.toString());
 
             }
 
