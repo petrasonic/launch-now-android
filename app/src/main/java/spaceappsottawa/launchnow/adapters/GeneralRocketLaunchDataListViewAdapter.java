@@ -47,20 +47,20 @@ public class GeneralRocketLaunchDataListViewAdapter extends BaseAdapter {
         if (view == null) {
             viewHolder = new ViewHolder(item.getName());
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.listview_general_rocket_info_row, viewGroup, false);
-            viewHolder.name_textView = ((TextView) view.findViewById(R.id.general_rocket_name));
-            viewHolder.company_textView = ((TextView) view.findViewById(R.id.general_rocket_company));
-            viewHolder.location_textView = ((TextView) view.findViewById(R.id.general_rocket_location));
-            viewHolder.date_textView = ((TextView) view.findViewById(R.id.general_rocket_date));
+            viewHolder.name_textView = ((TextView) view.findViewById(R.id.launch_name_textView));
+            viewHolder.company_textView = ((TextView) view.findViewById(R.id.lsp_textView));
+            viewHolder.location_textView = ((TextView) view.findViewById(R.id.country_textView));
+            viewHolder.date_textView = ((TextView) view.findViewById(R.id.date_textView));
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
             if (!viewHolder.name.equals(item.getName())) {
                 viewHolder = new ViewHolder(item.getName());
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.listview_general_rocket_info_row, viewGroup, false);
-                viewHolder.name_textView = ((TextView) view.findViewById(R.id.general_rocket_name));
-                viewHolder.company_textView = ((TextView) view.findViewById(R.id.general_rocket_company));
-                viewHolder.location_textView = ((TextView) view.findViewById(R.id.general_rocket_location));
-                viewHolder.date_textView = ((TextView) view.findViewById(R.id.general_rocket_date));
+                viewHolder.name_textView = ((TextView) view.findViewById(R.id.launch_name_textView));
+                viewHolder.company_textView = ((TextView) view.findViewById(R.id.lsp_textView));
+                viewHolder.location_textView = ((TextView) view.findViewById(R.id.country_textView));
+                viewHolder.date_textView = ((TextView) view.findViewById(R.id.date_textView));
                 view.setTag(viewHolder);
             }
         }

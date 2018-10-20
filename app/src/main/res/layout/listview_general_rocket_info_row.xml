@@ -21,29 +21,29 @@
         android:layout_marginLeft="10dp">
 
         <TextView
-            android:id="@+id/general_rocket_name"
+            android:id="@+id/launch_name_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
             android:textSize="8pt"
-            android:text="Rocket Name" />
+            android:text="Launch Name" />
 
         <TextView
-            android:id="@+id/general_rocket_company"
+            android:id="@+id/lsp_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="Company" />
+            android:text="LSP" />
 
         <TextView
-            android:id="@+id/general_rocket_location"
+            android:id="@+id/country_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="Location" />
+            android:text="Country" />
 
         <TextView
-            android:id="@+id/general_rocket_date"
+            android:id="@+id/date_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
