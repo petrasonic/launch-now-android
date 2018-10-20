@@ -25,12 +25,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import spaceappsottawa.launchnow.adapters.GeneralRocketLaunchDataListViewAdapter;
-import spaceappsottawa.launchnow.models.RocketLaunchListViewItem;
+import spaceappsottawa.launchnow.models.Launch;
 
 public class MainActivity extends AppCompatActivity {
 
     private final static String TAG = "MainActivity";
-    private final static String BASE_URL = "http://10.0.2.2:3001";
 
     private RequestQueue requestQueue;
 
@@ -47,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
 
         generalLaunchDataListView = (ListView) findViewById(R.id.general_launch_data_listview);
 
-        retrieveRocketDataFromAPI();
+        retrieveLaunchDataFromAPI();
     }
 
-    public void retrieveRocketDataFromAPI() {
+    public void retrieveLaunchDataFromAPI() {
         String requestURL = "https://launchlibrary.net/1.4/launch/next/20";
 
         // Request a string response from the provided URL.
@@ -61,16 +60,16 @@ public class MainActivity extends AppCompatActivity {
                         // Display the first 500 characters of the response string.
 
                         // Retrieve list of items that we are interested in from the JSON Array:
-                        ArrayList<RocketLaunchListViewItem> listOfLaunches = retrieveDataFromResponse(response);
+                        ArrayList<Launch> listOfLaunches = retrieveLaunchDataFromResponse(response);
                         generalRocketLaunchAdapter = new GeneralRocketLaunchDataListViewAdapter(MainActivity.this, listOfLaunches);
                         generalLaunchDataListView.setAdapter(generalRocketLaunchAdapter);
 
                         generalLaunchDataListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                RocketLaunchListViewItem item = (RocketLaunchListViewItem) generalRocketLaunchAdapter.getItem(i);
+                                Launch item = (Launch) generalRocketLaunchAdapter.getItem(i);
                                 // Toast.makeText(MainActivity.this, item.getMap_url(), Toast.LENGTH_SHORT).show();
-                                String map_url = item.getMap_url().replace("MAP URL: ", "");
+                                String map_url = item.getLocation().getPadMapURL().replace("MAP URL: ", "");
                                 if (!map_url.equals("")) {
                                     // Create a Uri from an intent string. Use the result to create an Intent.
                                     Uri gmmIntentUri = Uri.parse(map_url);
@@ -108,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public ArrayList<RocketLaunchListViewItem> retrieveDataFromResponse(String response) {
-        ArrayList<RocketLaunchListViewItem> listOfLaunches = new ArrayList<RocketLaunchListViewItem>();
+    public ArrayList<Launch> retrieveLaunchDataFromResponse(String response) {
+        ArrayList<Launch> listOfLaunches = new ArrayList<Launch>();
 
         try {
             JSONObject jsonObject = new JSONObject(response);
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
             for (int i = 0; i < launchesJSONArray.length(); i++) {
                 JSONObject temp_launch_json_object = launchesJSONArray.getJSONObject(i);
-                listOfLaunches.add(new RocketLaunchListViewItem(temp_launch_json_object));
+                listOfLaunches.add(new Launch(temp_launch_json_object));
             }
 
         } catch (JSONException e) {
@@ -129,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return listOfLaunches;
-
     }
 
 }
