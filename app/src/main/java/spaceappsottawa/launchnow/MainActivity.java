@@ -1,10 +1,15 @@
 package spaceappsottawa.launchnow;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -59,6 +64,30 @@ public class MainActivity extends AppCompatActivity {
                         ArrayList<RocketLaunchListViewItem> listOfLaunches = retrieveDataFromResponse(response);
                         generalRocketLaunchAdapter = new GeneralRocketLaunchDataListViewAdapter(MainActivity.this, listOfLaunches);
                         generalLaunchDataListView.setAdapter(generalRocketLaunchAdapter);
+
+                        generalLaunchDataListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                RocketLaunchListViewItem item = (RocketLaunchListViewItem) generalRocketLaunchAdapter.getItem(i);
+                                // Toast.makeText(MainActivity.this, item.getMap_url(), Toast.LENGTH_SHORT).show();
+                                String map_url = item.getMap_url().replace("MAP URL: ", "");
+                                if (!map_url.equals("")) {
+                                    // Create a Uri from an intent string. Use the result to create an Intent.
+                                    Uri gmmIntentUri = Uri.parse(map_url);
+
+                                    // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
+                                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+
+                                    // Attempt to start an activity that can handle the Intent
+                                    // Toast.makeText(MainActivity.this, item.getMap_url(), Toast.LENGTH_SHORT).show();
+                                    startActivity(mapIntent);
+
+                                } else {
+                                    Toast.makeText(MainActivity.this, "This launch does not have a Map URL!", Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+                        });
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -72,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop () {
+    protected void onStop() {
         super.onStop();
         if (requestQueue != null) {
             requestQueue.cancelAll(TAG);

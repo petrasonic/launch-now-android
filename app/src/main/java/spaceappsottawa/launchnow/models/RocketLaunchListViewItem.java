@@ -12,7 +12,7 @@ public class RocketLaunchListViewItem {
     private String company = ""; // The company that is launching the rocket
     private String location = ""; // The location of the rocket launch
     private String date = ""; // The date of the rocket launch
-
+    private String map_url = "";
 
 
     public RocketLaunchListViewItem(JSONObject rocketLaunchJSONObject) {
@@ -41,13 +41,17 @@ public class RocketLaunchListViewItem {
                     temp_pad_name += padsJSONArray.getJSONObject(i).getString("name");
                     temp_map_url += padsJSONArray.getJSONObject(i).getString("mapURL");
 
+                    map_url = temp_map_url;
+
                     final_location.append(temp_pad_name).append('\n');
-                    final_location.append(temp_map_url).append('\n');
-                    JSONArray padAgencies = padsJSONArray.getJSONObject(i).getJSONArray("agencies");
-                    for (int j = 0; j < padAgencies.length(); j++) {
-                        String temp_agency_name = "AGENCY NAME: ";
-                        temp_agency_name += padAgencies.getJSONObject(i).getString("name");
-                        final_location.append(temp_agency_name).append('\n');;
+                    if (!padsJSONArray.getJSONObject(i).isNull("agencies")) {
+                        JSONArray padAgencies = padsJSONArray.getJSONObject(i).getJSONArray("agencies");
+                        for (int j = 0; j < padAgencies.length(); j++) {
+                            String temp_agency_name = "AGENCY NAME: ";
+                            temp_agency_name += padAgencies.getJSONObject(i).getString("name");
+                            final_location.append(temp_agency_name).append('\n');
+                            ;
+                        }
                     }
                 }
 
@@ -96,4 +100,7 @@ public class RocketLaunchListViewItem {
         this.date = date;
     }
 
+    public String getMap_url() {
+        return map_url;
+    }
 }
