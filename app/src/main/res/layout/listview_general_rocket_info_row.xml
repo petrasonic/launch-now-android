@@ -12,7 +12,7 @@
         android:layout_width="80dp"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/temp_logo"/>
+        android:src="@drawable/launch_sm"/>
 
     <LinearLayout
         android:layout_width="match_parent"
