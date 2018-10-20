@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,6 +13,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
 
     private ListView generalLaunchDataListView;
-    private TextView tempJsonTextView;
 
     private BaseAdapter generalRocketLaunchAdapter;
 
@@ -39,34 +38,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        generalLaunchDataListView = (ListView) findViewById(R.id.general_launch_data_listview);
         requestQueue = Volley.newRequestQueue(MainActivity.this);
 
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("name", "ICON (Ionospheric Connection Explorer)");
-            jsonObject.put("company", "NASA");
-            jsonObject.put("location", "Kodiak Island");
-            jsonObject.put("date", "October 26, 2018");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        RocketLaunchListViewItem rocketLaunchListViewItem = new RocketLaunchListViewItem(jsonObject);
-
-        ArrayList<RocketLaunchListViewItem> listOfRocketLaunches = new ArrayList<>();
-        listOfRocketLaunches.add(rocketLaunchListViewItem);
-
-        generalRocketLaunchAdapter = new GeneralRocketLaunchDataListViewAdapter(MainActivity.this, listOfRocketLaunches);
         generalLaunchDataListView = (ListView) findViewById(R.id.general_launch_data_listview);
-        generalLaunchDataListView.setAdapter(generalRocketLaunchAdapter);
 
-        // makeTempJsonRequest();
+        retrieveRocketDataFromAPI();
     }
 
-    public void makeTempJsonRequest() {
-        // Instantiate the RequestQueue.
-        String requestURL = BASE_URL + "/api/example";
+    public void retrieveRocketDataFromAPI() {
+        String requestURL = "https://launchlibrary.net/1.4/launch/next/20";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, requestURL,
@@ -74,13 +54,16 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        tempJsonTextView.setText("Response is: "+ response);
+
+                        // Retrieve list of items that we are interested in from the JSON Array:
+                        ArrayList<RocketLaunchListViewItem> listOfLaunches = retrieveDataFromResponse(response);
+                        generalRocketLaunchAdapter = new GeneralRocketLaunchDataListViewAdapter(MainActivity.this, listOfLaunches);
+                        generalLaunchDataListView.setAdapter(generalRocketLaunchAdapter);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.v(TAG, error.toString());
-                tempJsonTextView.setText("That didn't work!");
             }
         });
 
@@ -94,6 +77,30 @@ public class MainActivity extends AppCompatActivity {
         if (requestQueue != null) {
             requestQueue.cancelAll(TAG);
         }
+    }
+
+    public ArrayList<RocketLaunchListViewItem> retrieveDataFromResponse(String response) {
+        ArrayList<RocketLaunchListViewItem> listOfLaunches = new ArrayList<RocketLaunchListViewItem>();
+
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            Log.v(TAG, jsonObject.toString());
+
+            JSONArray launchesJSONArray = jsonObject.getJSONArray("launches");
+            Log.v(TAG, launchesJSONArray.toString());
+
+
+            for (int i = 0; i < launchesJSONArray.length(); i++) {
+                JSONObject temp_launch_json_object = launchesJSONArray.getJSONObject(i);
+                listOfLaunches.add(new RocketLaunchListViewItem(temp_launch_json_object));
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return listOfLaunches;
+
     }
 
 }
