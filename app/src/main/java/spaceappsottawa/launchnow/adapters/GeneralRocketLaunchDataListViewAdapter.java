@@ -80,7 +80,7 @@ public class GeneralRocketLaunchDataListViewAdapter extends BaseAdapter {
             SimpleDateFormat fmtOut = new SimpleDateFormat("MMMM dd, yyyy", Locale.US);
             formattedDate =  fmtOut.format(date);
         } catch (ParseException e) {
-
+            formattedDate = item.getWindowStart();
         }
 
         viewHolder.date_textView.setText(formattedDate);
