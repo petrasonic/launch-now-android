@@ -3,6 +3,8 @@ package spaceappsottawa.launchnow;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -12,6 +14,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import spaceappsottawa.launchnow.adapters.GeneralRocketLaunchDataListViewAdapter;
+import spaceappsottawa.launchnow.models.RocketLaunchListViewItem;
+
 public class MainActivity extends AppCompatActivity {
 
     private final static String TAG = "MainActivity";
@@ -19,17 +29,39 @@ public class MainActivity extends AppCompatActivity {
 
     private RequestQueue requestQueue;
 
+    private ListView generalLaunchDataListView;
     private TextView tempJsonTextView;
+
+    private BaseAdapter generalRocketLaunchAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tempJsonTextView = (TextView) findViewById(R.id.temp_json);
+        generalLaunchDataListView = (ListView) findViewById(R.id.general_launch_data_listview);
         requestQueue = Volley.newRequestQueue(MainActivity.this);
 
-        makeTempJsonRequest();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("name", "ICON (Ionospheric Connection Explorer)");
+            jsonObject.put("company", "NASA");
+            jsonObject.put("location", "Kodiak Island");
+            jsonObject.put("date", "October 26, 2018");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RocketLaunchListViewItem rocketLaunchListViewItem = new RocketLaunchListViewItem(jsonObject);
+
+        ArrayList<RocketLaunchListViewItem> listOfRocketLaunches = new ArrayList<>();
+        listOfRocketLaunches.add(rocketLaunchListViewItem);
+
+        generalRocketLaunchAdapter = new GeneralRocketLaunchDataListViewAdapter(MainActivity.this, listOfRocketLaunches);
+        generalLaunchDataListView = (ListView) findViewById(R.id.general_launch_data_listview);
+        generalLaunchDataListView.setAdapter(generalRocketLaunchAdapter);
+
+        // makeTempJsonRequest();
     }
 
     public void makeTempJsonRequest() {
