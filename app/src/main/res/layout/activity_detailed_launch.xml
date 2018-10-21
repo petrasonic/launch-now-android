@@ -296,10 +296,11 @@
                             android:text="Agency" />
                     </LinearLayout>
                     <ImageButton
+                        android:id="@+id/map_image_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight=".2"
-                        android:src="@android:drawable/ic_dialog_map"/>
+                        android:src="@drawable/baseline_location_on_24"/>
 
                     <!-- use this link for the image button <TextView
                         android:id="@+id/detailed_pad_map_url_textView"

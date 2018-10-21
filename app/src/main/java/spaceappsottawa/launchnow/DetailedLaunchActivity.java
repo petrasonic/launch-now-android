@@ -1,11 +1,15 @@
 package spaceappsottawa.launchnow;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,49 +22,41 @@ public class DetailedLaunchActivity extends AppCompatActivity {
     private Handler handler = new Handler();
     private Runnable runnable;
 
-    private String launchName;
-    private String launchWindowStart;
-    private String launchWindowEnd;
+    private String launchName = "";
+    private String launchWindowStart = "";
+    private String launchWindowEnd = "";
     private int launchStatus;
-    private String launchVideoURL;
+    private String launchVideoURL = "";
 
-    private boolean locationExists;
-    private String locationName;
-    private String locationCountry;
-    private String locationPadName;
-    private String locationPadMapURL;
-    private String locationAgency;
+    private boolean locationExists = false;
+    private String locationName = "";
+    private String locationCountry = "";
+    private String locationPadName = "";
+    private String locationPadMapURL = "";
+    private String locationAgency = "";
 
-    private boolean rocketExists;
-    private String rocketName;
-    private String rocketWikiURL;
-    private String rocketImageURL;
+    private boolean rocketExists = false;
+    private String rocketName = "";
+    private String rocketWikiURL = "";
+    private String rocketImageURL = "";
 
-    private boolean missionExists;
-    private String missionName;
-    private String missionDescription;
-    private String missionWikiURL;
-    private String missionTypeName;
+    private boolean missionExists = false;
+    private String missionName = "";
+    private String missionDescription = "";
+    private String missionWikiURL = "";
+    private String missionTypeName = "";
 
-    private boolean lspExists;
-    private String lspName;
-    private String lspWikiURL;
+    private boolean lspExists = false;
+    private String lspName = "";
+    private String lspWikiURL = "";
 
-    private TextView launchNameTextView;
-    private TextView launchWindowStartTextView;
-    private TextView launchWindowEndTextView;
     private TextView launchStatusTextView;
     private TextView launchVideoURLTextView;
 
     private TextView locationNameTextView;
-    private TextView locationCountryTextView;
-    private TextView locationPadNameTextView;
-    private TextView locationPadMapURLTextView;
     private TextView locationAgencyTextView;
 
     private TextView rocketNameTextView;
-    private TextView rocketWikiURLTextView;
-    private TextView rocketImageURLTextView;
 
     private TextView missionNameTextView;
     private TextView missionDescriptionTextView;
@@ -69,6 +65,8 @@ public class DetailedLaunchActivity extends AppCompatActivity {
 
     private TextView lspNameTextView;
     private TextView lspWikiURLTextView;
+
+    private ImageButton mapImageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,21 +107,13 @@ public class DetailedLaunchActivity extends AppCompatActivity {
 
 
         // Initialize the TextView variables.
-//        launchNameTextView = (TextView) findViewById(R.id.detailed_launch_name_textView);
-//        launchWindowStartTextView = (TextView) findViewById(R.id.detailed_launch_window_start_textView);
-//        launchWindowEndTextView = (TextView) findViewById(R.id.detailed_launch_window_end_textView);
         launchStatusTextView = (TextView) findViewById(R.id.detailed_launch_status_textView);
         launchVideoURLTextView = (TextView) findViewById(R.id.detailed_launch_vid_url_textView);
 
         locationNameTextView = (TextView) findViewById(R.id.detailed_location_name_textView);
-//        locationCountryTextView = (TextView) findViewById(R.id.detailed_country_textView);
-//        locationPadNameTextView = (TextView) findViewById(R.id.detailed_pad_name_textView);
-//        locationPadMapURLTextView = (TextView) findViewById(R.id.detailed_pad_map_url_textView);
         locationAgencyTextView = (TextView) findViewById(R.id.detailed_pad_agency_textView);
 
         rocketNameTextView = (TextView) findViewById(R.id.detailed_rocket_name_textView);
-//        rocketWikiURLTextView = (TextView) findViewById(R.id.detailed_rocket_wiki_url_textView);
-//        rocketImageURLTextView = (TextView) findViewById(R.id.detailed_rocket_image_url_textView);
 
         missionNameTextView = (TextView) findViewById(R.id.detailed_mission_name_textView);
         missionDescriptionTextView = (TextView) findViewById(R.id.detailed_mission_description_textView);
@@ -131,39 +121,47 @@ public class DetailedLaunchActivity extends AppCompatActivity {
         missionTypeNameTextView = (TextView) findViewById(R.id.detailed_mission_type_name_textView);
 
         lspNameTextView = (TextView) findViewById(R.id.detailed_lsp_name_textView);
-//        lspWikiURLTextView = (TextView) findViewById(R.id.detailed_lsp_wiki_url_textView);
 
+        mapImageButton = (ImageButton) findViewById(R.id.map_image_button);
+        mapImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(MainActivity.this, item.getMap_url(), Toast.LENGTH_SHORT).show();
+                String map_url = locationPadMapURL.replace("MAP URL: ", "");
+                if (!map_url.equals("")) {
+                    // Create a Uri from an intent string. Use the result to create an Intent.
+                    Uri gmmIntentUri = Uri.parse(map_url);
+
+                    // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+
+                    // Attempt to start an activity that can handle the Intent
+                    // Toast.makeText(MainActivity.this, item.getMap_url(), Toast.LENGTH_SHORT).show();
+                    startActivity(mapIntent);
+
+                } else {
+                    Toast.makeText(DetailedLaunchActivity.this, "This launch does not have a Map URL!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
         // Add text to the text views accordingly.
-//        launchNameTextView.setText(launchName);
-//        launchWindowStartTextView.setText(launchWindowStart);
-//        launchWindowEndTextView.setText(launchWindowEnd);
         launchStatusTextView.setText("" + launchStatus);
         launchVideoURLTextView.setText(launchVideoURL);
 
         if (locationExists) {
             locationNameTextView.setText(locationPadName);
-//            locationCountryTextView.setText(locationCountry);
-//            locationPadNameTextView.setText(locationPadName);
-//            locationPadMapURLTextView.setText(locationPadMapURL);
             locationAgencyTextView.setText(locationAgency);
         } else {
             locationNameTextView.setText("");
-//            locationCountryTextView.setText("");
-//            locationPadNameTextView.setText("");
-//            locationPadMapURLTextView.setText("");
             locationAgencyTextView.setText("");
         }
 
         if (rocketExists) {
             rocketNameTextView.setText(rocketName);
-//            rocketWikiURLTextView.setText(rocketWikiURL);
-//            rocketImageURLTextView.setText(rocketImageURL);
         } else {
             rocketNameTextView.setText("");
-//            rocketWikiURLTextView.setText("");
-//            rocketImageURLTextView.setText("");
         }
 
         if (missionExists) {
@@ -180,11 +178,11 @@ public class DetailedLaunchActivity extends AppCompatActivity {
 
         if (lspExists) {
             lspNameTextView.setText(lspName);
-//            lspWikiURLTextView.setText(lspWikiURL);
         } else {
             lspNameTextView.setText("");
-//            lspWikiURLTextView.setText("");
         }
+
+        setTitle(launchName);
 
         initUI();
         countDownStart();
