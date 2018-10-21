@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                                     mBundle.putString("mission_description", launchItem.getMission().getDescription());
                                     mBundle.putString("mission_wiki_url", launchItem.getMission().getWikiURL());
                                     mBundle.putString("mission_type_name", launchItem.getMission().getTypeName());
+                                    mBundle.putStringArrayList("mission_payloads", launchItem.getMission().getPayloads());
                                 }
 
                                 if (launchItem.getLaunchServiceProvider() == null) {

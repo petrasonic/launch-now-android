@@ -135,7 +135,11 @@ public class GeneralRocketLaunchDataListViewAdapter extends BaseAdapter implemen
                         tempList.add(launch);
                     }  else if (launch.getLocation() != null && launch.getLocation().getName().toLowerCase().contains(constraint.toString().toLowerCase())) {
                         tempList.add(launch);
-                    } else if (launch.getRocket() != null && launch.getRocket().getName().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                    } else if (launch.getLocation() != null && launch.getLocation().getPadName().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        tempList.add(launch);
+                    } else if (launch.getLocation() != null && launch.getLocation().getPadAgencyName().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        tempList.add(launch);
+                    }else if (launch.getRocket() != null && launch.getRocket().getName().toLowerCase().contains(constraint.toString().toLowerCase())) {
                         tempList.add(launch);
                     } else if (launch.getMission() != null && launch.getMission().getName().toLowerCase().contains(constraint.toString().toLowerCase())) {
                         tempList.add(launch);

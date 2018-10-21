@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -47,6 +48,7 @@ public class DetailedLaunchActivity extends AppCompatActivity {
     private String missionDescription = "";
     private String missionWikiURL = "";
     private String missionTypeName = "";
+    private ArrayList<String> missionPayloads = new ArrayList<String>();
 
     private boolean lspExists = false;
     private String lspName = "";
@@ -64,12 +66,13 @@ public class DetailedLaunchActivity extends AppCompatActivity {
     private TextView missionDescriptionTextView;
     private TextView missionWikiURLTextView;
     private TextView missionTypeNameTextView;
+    private TextView missionPayloadsTextView;
 
     private TextView lspNameTextView;
-    private TextView lspWikiURLTextView;
 
     private ImageButton mapImageButton;
     private LinearLayout missionLinearLayout;
+    private LinearLayout payloadsLinearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +105,7 @@ public class DetailedLaunchActivity extends AppCompatActivity {
         missionDescription = getIntent().getStringExtra("mission_description");
         missionWikiURL = getIntent().getStringExtra("mission_wiki_url");
         missionTypeName = getIntent().getStringExtra("mission_type_name");
+        missionPayloads = getIntent().getStringArrayListExtra("mission_payloads");
 
         lspExists = getIntent().getBooleanExtra("lsp_exists", false);
         lspName = getIntent().getStringExtra("lsp_name");
@@ -122,9 +126,11 @@ public class DetailedLaunchActivity extends AppCompatActivity {
         missionDescriptionTextView = (TextView) findViewById(R.id.detailed_mission_description_textView);
         missionWikiURLTextView = (TextView) findViewById(R.id.detailed_mission_wiki_url_textView);
         missionTypeNameTextView = (TextView) findViewById(R.id.detailed_mission_type_name_textView);
+        missionPayloadsTextView = (TextView) findViewById(R.id.detailed_mission_payloads_textView);
 
         lspNameTextView = (TextView) findViewById(R.id.detailed_lsp_name_textView);
         missionLinearLayout = (LinearLayout) findViewById(R.id.mission_linear_layout);
+        payloadsLinearLayout = (LinearLayout) findViewById(R.id.payloads_linear_layout);
 
         mapImageButton = (ImageButton) findViewById(R.id.map_image_button);
         mapImageButton.setOnClickListener(new View.OnClickListener() {
@@ -203,13 +209,29 @@ public class DetailedLaunchActivity extends AppCompatActivity {
             missionNameTextView.setText(missionName);
             missionDescriptionTextView.setText(missionDescription);
             missionWikiURLTextView.setText(missionWikiURL);
+            if (!missionWikiURL.equals("")) {
+                missionWikiURLTextView.setMovementMethod(LinkMovementMethod.getInstance());
+                String temp_mission_url = "<a href=\"" + missionWikiURL + "\">" + "Read More" + "</a>️";
+                missionWikiURLTextView.setText((Html.fromHtml(temp_mission_url)));
+            }
             missionTypeNameTextView.setText(missionTypeName);
+            String temp_mission_payloads = "";
+            for (int i = 0; i < missionPayloads.size(); i++) {
+                temp_mission_payloads += missionPayloads.get(i) + "\n";
+            }
+            if (!temp_mission_payloads.equals("")) {
+                payloadsLinearLayout.setVisibility(View.VISIBLE);
+                missionPayloadsTextView.setText(temp_mission_payloads);
+            } else {
+                payloadsLinearLayout.setVisibility(View.GONE);
+            }
         } else {
             missionLinearLayout.setVisibility(View.GONE);
             missionNameTextView.setText("");
             missionDescriptionTextView.setText("");
             missionWikiURLTextView.setText("");
             missionTypeNameTextView.setText("");
+            missionPayloadsTextView.setText("");
         }
 
         if (lspExists) {
