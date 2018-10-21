@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     public void retrieveLaunchDataFromAPI() {
-        String requestURL = "https://launchlibrary.net/1.4/launch/next/20";
+        String requestURL = "https://launchlibrary.net/1.4/launch/next/100";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, requestURL,
