@@ -1,12 +1,17 @@
 package spaceappsottawa.launchnow;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -25,7 +30,7 @@ import java.util.ArrayList;
 import spaceappsottawa.launchnow.adapters.GeneralRocketLaunchDataListViewAdapter;
 import spaceappsottawa.launchnow.models.Launch;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private final static String TAG = "MainActivity";
 
@@ -33,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView generalLaunchDataListView;
 
-    private BaseAdapter generalRocketLaunchAdapter;
+    private GeneralRocketLaunchDataListViewAdapter generalRocketLaunchAdapter;
+    private MenuItem searchMenuItem;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +143,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_menu, menu);
+
+        SearchManager searchManager = (SearchManager)
+                getSystemService(Context.SEARCH_SERVICE);
+        searchMenuItem = menu.findItem(R.id.search);
+        searchView = (SearchView) searchMenuItem.getActionView();
+
+        searchView.setSearchableInfo(searchManager.
+                getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setOnQueryTextListener(this);
+
+        return true;
+    }
+
     public ArrayList<Launch> retrieveLaunchDataFromResponse(String response) {
         ArrayList<Launch> listOfLaunches = new ArrayList<Launch>();
 
@@ -159,4 +184,14 @@ public class MainActivity extends AppCompatActivity {
         return listOfLaunches;
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        generalRocketLaunchAdapter.getFilter().filter(s);
+        return true;
+    }
 }
