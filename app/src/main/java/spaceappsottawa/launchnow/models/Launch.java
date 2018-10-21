@@ -12,6 +12,7 @@ public class Launch {
     private String windowStart;
     private String windowEnd;
     private String net;
+    private int status;
 
     private String vidURLs;
 
@@ -39,6 +40,9 @@ public class Launch {
             }
             if (!launchJSONObject.isNull("net")) {
                 setNet(launchJSONObject.getString("net"));
+            }
+            if (!launchJSONObject.isNull("status")) {
+                setStatus(launchJSONObject.getInt("status"));
             }
             if (!launchJSONObject.isNull("vidURLs")) {
                 if (launchJSONObject.getJSONArray("vidURLs").length() != 0) {
@@ -104,6 +108,14 @@ public class Launch {
 
     public void setNet(String net) {
         this.net = net;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public String getVidURLs() {
