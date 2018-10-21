@@ -23,10 +23,11 @@
         <activity android:name=".MainActivity">
             <meta-data
                 android:name="android.app.searchable"
-                android:resource="@xml/searchable"></meta-data>
+                android:resource="@xml/searchable" />
         </activity>
         <activity android:name=".DetailedLaunchActivity" />
-        <activity android:name=".RocketJargon"></activity>
+        <activity android:name=".RocketJargon" />
+        <activity android:name=".StagesOfRocketLaunch"></activity>
     </application>
 
 </manifest>
