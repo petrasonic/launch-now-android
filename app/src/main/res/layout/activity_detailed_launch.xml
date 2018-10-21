@@ -9,17 +9,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="10"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_weight="3"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
                 android:src="@drawable/launch_sm"/>
             <!--use this link in the image view <TextView
                 android:id="@+id/detailed_rocket_image_url_textView"
@@ -172,11 +171,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dip"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="7">
+            android:layout_marginRight="10dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
