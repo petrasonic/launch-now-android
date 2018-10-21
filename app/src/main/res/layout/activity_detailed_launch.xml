@@ -213,6 +213,7 @@
                     android:layout_weight=".5"
                     android:text="SpaceX"
                     android:textColor="#08C"
+                    android:linksClickable="true"
                     android:gravity="right"/>
                 <!-- clicking on the LSP name should go to this URL<TextView
                 android:id="@+id/detailed_lsp_wiki_url_textView"
@@ -238,6 +239,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
                     android:text="Falcon 9 Heavy"
+                    android:linksClickable="true"
                     android:textColor="#08C"
                     android:gravity="right"/>
                 <!-- use this link for when clicking on rocket name <TextView
