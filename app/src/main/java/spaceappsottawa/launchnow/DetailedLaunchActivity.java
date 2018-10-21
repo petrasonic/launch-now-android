@@ -109,21 +109,21 @@ public class DetailedLaunchActivity extends AppCompatActivity {
 
 
         // Initialize the TextView variables.
-        launchNameTextView = (TextView) findViewById(R.id.detailed_launch_name_textView);
-        launchWindowStartTextView = (TextView) findViewById(R.id.detailed_launch_window_start_textView);
-        launchWindowEndTextView = (TextView) findViewById(R.id.detailed_launch_window_end_textView);
+//        launchNameTextView = (TextView) findViewById(R.id.detailed_launch_name_textView);
+//        launchWindowStartTextView = (TextView) findViewById(R.id.detailed_launch_window_start_textView);
+//        launchWindowEndTextView = (TextView) findViewById(R.id.detailed_launch_window_end_textView);
         launchStatusTextView = (TextView) findViewById(R.id.detailed_launch_status_textView);
         launchVideoURLTextView = (TextView) findViewById(R.id.detailed_launch_vid_url_textView);
 
         locationNameTextView = (TextView) findViewById(R.id.detailed_location_name_textView);
-        locationCountryTextView = (TextView) findViewById(R.id.detailed_country_textView);
-        locationPadNameTextView = (TextView) findViewById(R.id.detailed_pad_name_textView);
-        locationPadMapURLTextView = (TextView) findViewById(R.id.detailed_pad_map_url_textView);
+//        locationCountryTextView = (TextView) findViewById(R.id.detailed_country_textView);
+//        locationPadNameTextView = (TextView) findViewById(R.id.detailed_pad_name_textView);
+//        locationPadMapURLTextView = (TextView) findViewById(R.id.detailed_pad_map_url_textView);
         locationAgencyTextView = (TextView) findViewById(R.id.detailed_pad_agency_textView);
 
         rocketNameTextView = (TextView) findViewById(R.id.detailed_rocket_name_textView);
-        rocketWikiURLTextView = (TextView) findViewById(R.id.detailed_rocket_wiki_url_textView);
-        rocketImageURLTextView = (TextView) findViewById(R.id.detailed_rocket_image_url_textView);
+//        rocketWikiURLTextView = (TextView) findViewById(R.id.detailed_rocket_wiki_url_textView);
+//        rocketImageURLTextView = (TextView) findViewById(R.id.detailed_rocket_image_url_textView);
 
         missionNameTextView = (TextView) findViewById(R.id.detailed_mission_name_textView);
         missionDescriptionTextView = (TextView) findViewById(R.id.detailed_mission_description_textView);
@@ -131,39 +131,39 @@ public class DetailedLaunchActivity extends AppCompatActivity {
         missionTypeNameTextView = (TextView) findViewById(R.id.detailed_mission_type_name_textView);
 
         lspNameTextView = (TextView) findViewById(R.id.detailed_lsp_name_textView);
-        lspWikiURLTextView = (TextView) findViewById(R.id.detailed_lsp_wiki_url_textView);
+//        lspWikiURLTextView = (TextView) findViewById(R.id.detailed_lsp_wiki_url_textView);
 
 
 
         // Add text to the text views accordingly.
-        launchNameTextView.setText(launchName);
-        launchWindowStartTextView.setText(launchWindowStart);
-        launchWindowEndTextView.setText(launchWindowEnd);
+//        launchNameTextView.setText(launchName);
+//        launchWindowStartTextView.setText(launchWindowStart);
+//        launchWindowEndTextView.setText(launchWindowEnd);
         launchStatusTextView.setText("" + launchStatus);
         launchVideoURLTextView.setText(launchVideoURL);
 
         if (locationExists) {
-            locationNameTextView.setText(locationName);
-            locationCountryTextView.setText(locationCountry);
-            locationPadNameTextView.setText(locationPadName);
-            locationPadMapURLTextView.setText(locationPadMapURL);
+            locationNameTextView.setText(locationPadName);
+//            locationCountryTextView.setText(locationCountry);
+//            locationPadNameTextView.setText(locationPadName);
+//            locationPadMapURLTextView.setText(locationPadMapURL);
             locationAgencyTextView.setText(locationAgency);
         } else {
             locationNameTextView.setText("");
-            locationCountryTextView.setText("");
-            locationPadNameTextView.setText("");
-            locationPadMapURLTextView.setText("");
+//            locationCountryTextView.setText("");
+//            locationPadNameTextView.setText("");
+//            locationPadMapURLTextView.setText("");
             locationAgencyTextView.setText("");
         }
 
         if (rocketExists) {
             rocketNameTextView.setText(rocketName);
-            rocketWikiURLTextView.setText(rocketWikiURL);
-            rocketImageURLTextView.setText(rocketImageURL);
+//            rocketWikiURLTextView.setText(rocketWikiURL);
+//            rocketImageURLTextView.setText(rocketImageURL);
         } else {
             rocketNameTextView.setText("");
-            rocketWikiURLTextView.setText("");
-            rocketImageURLTextView.setText("");
+//            rocketWikiURLTextView.setText("");
+//            rocketImageURLTextView.setText("");
         }
 
         if (missionExists) {
@@ -180,10 +180,10 @@ public class DetailedLaunchActivity extends AppCompatActivity {
 
         if (lspExists) {
             lspNameTextView.setText(lspName);
-            lspWikiURLTextView.setText(lspWikiURL);
+//            lspWikiURLTextView.setText(lspWikiURL);
         } else {
             lspNameTextView.setText("");
-            lspWikiURLTextView.setText("");
+//            lspWikiURLTextView.setText("");
         }
 
         initUI();

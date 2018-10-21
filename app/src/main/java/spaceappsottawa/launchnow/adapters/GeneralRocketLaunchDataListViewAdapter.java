@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.text.ParseException;
@@ -16,26 +18,31 @@ import java.util.Locale;
 import spaceappsottawa.launchnow.R;
 import spaceappsottawa.launchnow.models.Launch;
 
-public class GeneralRocketLaunchDataListViewAdapter extends BaseAdapter {
+public class GeneralRocketLaunchDataListViewAdapter extends BaseAdapter implements Filterable {
 
     private static final String TAG = "GeneralRocketLaunchDataListViewAdapter";
 
     private Context context;
     private ArrayList<Launch> rocketLaunchItems;
+    private ArrayList<Launch> filteredList;
+    private LaunchFilter launchFilter;
 
     public GeneralRocketLaunchDataListViewAdapter(Context context, ArrayList<Launch> rocketLaunchItems) {
         this.context = context;
         this.rocketLaunchItems = rocketLaunchItems;
+        filteredList = rocketLaunchItems;
+
+        getFilter();
     }
 
     @Override
     public int getCount() {
-        return rocketLaunchItems.size();
+        return filteredList.size();
     }
 
     @Override
     public Launch getItem(int i) {
-        return rocketLaunchItems.get(i);
+        return filteredList.get(i);
     }
 
     @Override
@@ -88,6 +95,15 @@ public class GeneralRocketLaunchDataListViewAdapter extends BaseAdapter {
         return view;
     }
 
+    @Override
+    public Filter getFilter() {
+        if (launchFilter == null) {
+            launchFilter = new LaunchFilter();
+        }
+
+        return launchFilter;
+    }
+
     public class ViewHolder {
         protected String name;
 
@@ -99,6 +115,58 @@ public class GeneralRocketLaunchDataListViewAdapter extends BaseAdapter {
         protected TextView lsp_textView;
         protected TextView country_textView;
         protected TextView date_textView;
+    }
+
+    /**
+     * Custom filter for friend list
+     * Filter content in friend list according to the search text
+     */
+    private class LaunchFilter extends Filter {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults filterResults = new FilterResults();
+            if (constraint!=null && constraint.length()>0) {
+                ArrayList<Launch> tempList = new ArrayList<Launch>();
+
+                // search content in friend list
+                for (Launch launch : rocketLaunchItems) {
+                    if (launch.getName() != null && launch.getName().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        tempList.add(launch);
+                    }  else if (launch.getLocation() != null && launch.getLocation().getName().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        tempList.add(launch);
+                    } else if (launch.getRocket() != null && launch.getRocket().getName().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        tempList.add(launch);
+                    } else if (launch.getMission() != null && launch.getMission().getName().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        tempList.add(launch);
+                    }  else if (launch.getLaunchServiceProvider().getName().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        tempList.add(launch);
+                    } else if (launch.getLocation().getCountryCode().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        tempList.add(launch);
+                    }
+                }
+
+                filterResults.count = tempList.size();
+                filterResults.values = tempList;
+            } else {
+                filterResults.count = rocketLaunchItems.size();
+                filterResults.values = rocketLaunchItems;
+            }
+
+            return filterResults;
+        }
+
+        /**
+         * Notify about filtered list to ui
+         * @param constraint text
+         * @param results filtered result
+         */
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            filteredList = (ArrayList<Launch>) results.values;
+            notifyDataSetChanged();
+        }
     }
 
 }
