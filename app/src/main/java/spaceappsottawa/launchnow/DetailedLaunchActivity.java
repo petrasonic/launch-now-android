@@ -69,6 +69,7 @@ public class DetailedLaunchActivity extends AppCompatActivity {
     private TextView lspWikiURLTextView;
 
     private ImageButton mapImageButton;
+    private LinearLayout missionLinearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +124,7 @@ public class DetailedLaunchActivity extends AppCompatActivity {
         missionTypeNameTextView = (TextView) findViewById(R.id.detailed_mission_type_name_textView);
 
         lspNameTextView = (TextView) findViewById(R.id.detailed_lsp_name_textView);
+        missionLinearLayout = (LinearLayout) findViewById(R.id.mission_linear_layout);
 
         mapImageButton = (ImageButton) findViewById(R.id.map_image_button);
         mapImageButton.setOnClickListener(new View.OnClickListener() {
@@ -197,11 +199,13 @@ public class DetailedLaunchActivity extends AppCompatActivity {
         }
 
         if (missionExists) {
+            missionLinearLayout.setVisibility(View.VISIBLE);
             missionNameTextView.setText(missionName);
             missionDescriptionTextView.setText(missionDescription);
             missionWikiURLTextView.setText(missionWikiURL);
             missionTypeNameTextView.setText(missionTypeName);
         } else {
+            missionLinearLayout.setVisibility(View.GONE);
             missionNameTextView.setText("");
             missionDescriptionTextView.setText("");
             missionWikiURLTextView.setText("");
