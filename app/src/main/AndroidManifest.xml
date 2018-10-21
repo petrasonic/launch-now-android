@@ -15,6 +15,7 @@
             <intent-filter>
                 android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -22,10 +23,11 @@
         <activity android:name=".MainActivity">
             <meta-data
                 android:name="android.app.searchable"
-                android:resource="@xml/searchable">
-            </meta-data>
+                android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".DetailedLaunchActivity"></activity>
+        <activity android:name=".DetailedLaunchActivity" />
+        <activity android:name=".RocketJargon" />
+        <activity android:name=".StagesOfRocketLaunch"></activity>
     </application>
 
 </manifest>

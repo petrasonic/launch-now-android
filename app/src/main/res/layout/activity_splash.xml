@@ -15,5 +15,5 @@
         android:layout_height="match_parent"
         android:cropToPadding="false"
         app:srcCompat="@drawable/logo" />
-    
+
 </LinearLayout>
