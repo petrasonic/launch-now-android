@@ -9,10 +9,10 @@ import java.util.ArrayList;
 public class Mission {
 
     private int id;
-    private String name;
-    private String description;
-    private String wikiURL;
-    private String typeName;
+    private String name = "";
+    private String description = "";
+    private String wikiURL = "";
+    private String typeName = "";
 
     private ArrayList<String> payloads;
 

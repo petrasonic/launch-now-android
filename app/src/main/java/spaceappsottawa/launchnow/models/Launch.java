@@ -8,13 +8,13 @@ import org.json.JSONObject;
 public class Launch {
 
     private int id;
-    private String name;
-    private String windowStart;
-    private String windowEnd;
-    private String net;
+    private String name = "";
+    private String windowStart = "";
+    private String windowEnd = "";
+    private String net = "";
     private int status;
 
-    private String vidURLs;
+    private String vidURLs = "";
 
     private Location location;
 

@@ -1,7 +1,6 @@
 package spaceappsottawa.launchnow;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -66,8 +65,54 @@ public class MainActivity extends AppCompatActivity {
                         generalLaunchDataListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                Launch item = (Launch) generalRocketLaunchAdapter.getItem(i);
+                                Launch launchItem = (Launch) generalRocketLaunchAdapter.getItem(i);
                                 Intent intent = new Intent(MainActivity.this, DetailedLaunchActivity.class);
+                                Bundle mBundle = new Bundle();
+                                mBundle.putString("launch_name", launchItem.getName());
+                                mBundle.putString("launch_window_start", launchItem.getWindowStart());
+                                mBundle.putString("launch_window_end", launchItem.getWindowEnd());
+                                mBundle.putInt("launch_status", launchItem.getStatus());
+                                mBundle.putString("launch_video_url", launchItem.getVidURLs());
+
+                                if (launchItem.getLocation() == null) {
+                                    mBundle.putBoolean("location_exists", false);
+                                } else {
+                                    mBundle.putBoolean("location_exists", true);
+                                    mBundle.putString("location_name", launchItem.getLocation().getName());
+                                    mBundle.putString("location_country", launchItem.getLocation().getCountryCode());
+                                    mBundle.putString("location_pad_name", launchItem.getLocation().getPadName());
+                                    mBundle.putString("location_pad_map_url", launchItem.getLocation().getPadMapURL());
+                                    mBundle.putString("location_agency", launchItem.getLocation().getPadAgencyName());
+                                }
+
+                                if (launchItem.getRocket() == null) {
+                                    mBundle.putBoolean("rocket_exists", false);
+                                } else {
+                                    mBundle.putBoolean("rocket_exists", true);
+                                    mBundle.putString("rocket_name", launchItem.getRocket().getName());
+                                    mBundle.putString("rocket_wiki_url", launchItem.getRocket().getWikiURL());
+                                    mBundle.putString("rocket_image_url", launchItem.getRocket().getImageURL());
+                                }
+
+                                if (launchItem.getMission() == null) {
+                                    mBundle.putBoolean("mission_exists", false);
+                                } else {
+                                    mBundle.putBoolean("mission_exists", true);
+                                    mBundle.putString("mission_name", launchItem.getMission().getName());
+                                    mBundle.putString("mission_description", launchItem.getMission().getDescription());
+                                    mBundle.putString("mission_wiki_url", launchItem.getMission().getWikiURL());
+                                    mBundle.putString("mission_type_name", launchItem.getMission().getTypeName());
+                                }
+
+                                if (launchItem.getLaunchServiceProvider() == null) {
+                                    mBundle.putBoolean("lsp_exists", false);
+                                } else {
+                                    mBundle.putBoolean("lsp_exists", true);
+                                    mBundle.putString("lsp_name", launchItem.getLaunchServiceProvider().getName());
+                                    mBundle.putString("lsp_wiki_url", launchItem.getLaunchServiceProvider().getWikiURL());
+                                }
+
+                                intent.putExtras(mBundle);
                                 startActivity(intent);
                             }
                         });

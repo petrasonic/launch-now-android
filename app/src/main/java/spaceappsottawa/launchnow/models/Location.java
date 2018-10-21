@@ -6,12 +6,12 @@ import org.json.JSONObject;
 public class Location {
 
     private int id;
-    private String name;
-    private String countryCode;
+    private String name = "";
+    private String countryCode = "";
 
-    private String padName;
-    private String padMapURL;
-    private String padAgencyName;
+    private String padName = "";
+    private String padMapURL = "";
+    private String padAgencyName = "";
 
 
     public Location(JSONObject locationJSONObject) {

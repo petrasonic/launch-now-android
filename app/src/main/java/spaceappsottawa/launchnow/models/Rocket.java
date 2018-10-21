@@ -6,9 +6,9 @@ import org.json.JSONObject;
 public class Rocket {
 
     private int id;
-    private String name;
-    private String wikiURL;
-    private String imageURL;
+    private String name = "";
+    private String wikiURL = "";
+    private String imageURL = "";
 
     public Rocket(JSONObject rocketJSONObject) {
         try {
