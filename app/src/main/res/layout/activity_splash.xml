@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:gravity="center"
-    android:background="@drawable/sky_sm"
+    android:background="@drawable/logo"
     tools:context=".SplashActivity">
-
 
     <ImageView
         android:id="@+id/image"
@@ -16,5 +15,5 @@
         android:layout_height="match_parent"
         android:cropToPadding="false"
         app:srcCompat="@drawable/logo" />
-
+    
 </LinearLayout>
