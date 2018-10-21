@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -147,8 +149,32 @@ public class DetailedLaunchActivity extends AppCompatActivity {
 
 
         // Add text to the text views accordingly.
-        launchStatusTextView.setText("" + launchStatus);
-        launchVideoURLTextView.setText(launchVideoURL);
+        switch(launchStatus) {
+            case 1:
+                launchStatusTextView.setText("On Schedule");
+                launchStatusTextView.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+                break;
+            case 2:
+                launchStatusTextView.setText("Possible Delay");
+                launchStatusTextView.setTextColor(getResources().getColor(android.R.color.holo_red_light));
+                break;
+            case 3:
+                launchStatusTextView.setText("On Schedule");
+                launchStatusTextView.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+                break;
+            case 4:
+                launchStatusTextView.setText("Possible Delay");
+                launchStatusTextView.setTextColor(getResources().getColor(android.R.color.holo_red_light));
+                break;
+        }
+
+        if (launchVideoURL.equals("")) {
+            launchVideoURLTextView.setText((""));
+        } else {
+            launchVideoURLTextView.setMovementMethod(LinkMovementMethod.getInstance());
+            String temp_vid_url = "<a href=\"" + launchVideoURL + "\">Live Stream ▶</a>️";
+            launchVideoURLTextView.setText((Html.fromHtml(temp_vid_url)));
+        }
 
         if (locationExists) {
             locationNameTextView.setText(locationPadName);

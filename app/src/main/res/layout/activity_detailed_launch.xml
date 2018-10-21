@@ -341,6 +341,7 @@
                         android:layout_weight=".5"
                         android:gravity="right"
                         android:textColor="#08C"
+                        android:linksClickable="true"
                         android:text="Watch Live ▶️" />
                 </LinearLayout>
             </LinearLayout>
