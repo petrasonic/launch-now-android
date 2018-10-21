@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.MainActivity">
+
+    <item
+        android:id="@+id/action_remind_me"
+        android:title="Remind Me of this Launch"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_explore_twitter_feed"
+        android:title="Explore Twitter Feed"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_see_additional_weather_details"
+        android:title="See Additional Weather Details"
+        app:showAsAction="never"/>
+
+
+</menu>

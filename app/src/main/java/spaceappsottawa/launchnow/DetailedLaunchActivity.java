@@ -5,8 +5,12 @@ import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -79,7 +83,9 @@ public class DetailedLaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_launch);
 
-
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        myToolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
 
         // Retrieve data from the bundle:
         launchName = getIntent().getStringExtra("launch_name");
@@ -110,7 +116,6 @@ public class DetailedLaunchActivity extends AppCompatActivity {
         lspExists = getIntent().getBooleanExtra("lsp_exists", false);
         lspName = getIntent().getStringExtra("lsp_name");
         lspWikiURL = getIntent().getStringExtra("lsp_wiki_url");
-
 
 
         // Initialize the TextView variables.
@@ -157,7 +162,7 @@ public class DetailedLaunchActivity extends AppCompatActivity {
 
 
         // Add text to the text views accordingly.
-        switch(launchStatus) {
+        switch (launchStatus) {
             case 1:
                 launchStatusTextView.setText("On Schedule");
                 launchStatusTextView.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
@@ -293,6 +298,33 @@ public class DetailedLaunchActivity extends AppCompatActivity {
             }
         };
         handler.postDelayed(runnable, 0);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_remind_me:
+                Toast.makeText(DetailedLaunchActivity.this, "Feature Coming Soon!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_explore_twitter_feed: {
+                Toast.makeText(DetailedLaunchActivity.this, "Feature Coming Soon!", Toast.LENGTH_SHORT).show();
+                break;
+            }
+            case R.id.action_see_additional_weather_details: {
+                Toast.makeText(DetailedLaunchActivity.this, "Feature Coming Soon!", Toast.LENGTH_SHORT).show();
+                break;
+            }
+
+        }
+        return true;
     }
 
 }

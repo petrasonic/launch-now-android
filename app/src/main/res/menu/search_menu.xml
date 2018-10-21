@@ -6,4 +6,20 @@
         android:icon="@android:drawable/ic_menu_search"
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="android.support.v7.widget.SearchView" />
+
+    <item
+        android:id="@+id/action_see_iss_livestream"
+        android:title="See ISS Live Stream"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_see_rocket_jargon"
+        android:title="Rocket Jargon"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_see_rocket_launch_stages"
+        android:title="Rocket Launch Stages"
+        app:showAsAction="never"/>
+
 </menu>

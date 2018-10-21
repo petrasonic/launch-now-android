@@ -3,9 +3,11 @@ package spaceappsottawa.launchnow;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -46,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        myToolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
 
         requestQueue = Volley.newRequestQueue(MainActivity.this);
 
@@ -162,6 +168,30 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_see_iss_livestream: {
+                String url = "https://www.youtube.com/watch?v=UQt2iLKqBbI";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+                break;
+            }
+            case R.id.action_see_rocket_jargon: {
+                Intent i = new Intent(MainActivity.this, RocketJargon.class);
+                startActivity(i);
+                break;
+            }
+            case R.id.action_see_rocket_launch_stages: {
+                Intent i = new Intent(MainActivity.this, StagesOfRocketLaunch.class);
+                startActivity(i);
+                break;
+            }
+        }
+        return true;
+    }
+
     public ArrayList<Launch> retrieveLaunchDataFromResponse(String response) {
         ArrayList<Launch> listOfLaunches = new ArrayList<Launch>();
 
@@ -195,4 +225,5 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         generalRocketLaunchAdapter.getFilter().filter(s);
         return true;
     }
+
 }
