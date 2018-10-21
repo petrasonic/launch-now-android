@@ -185,7 +185,13 @@ public class DetailedLaunchActivity extends AppCompatActivity {
         }
 
         if (rocketExists) {
-            rocketNameTextView.setText(rocketName);
+            if (rocketWikiURL.equals("")) {
+                rocketNameTextView.setText(rocketName);
+            } else {
+                rocketNameTextView.setMovementMethod(LinkMovementMethod.getInstance());
+                String temp_rocket_url = "<a href=\"" + rocketWikiURL + "\">" + rocketName + "</a>️";
+                rocketNameTextView.setText((Html.fromHtml(temp_rocket_url)));
+            }
         } else {
             rocketNameTextView.setText("");
         }
@@ -203,7 +209,13 @@ public class DetailedLaunchActivity extends AppCompatActivity {
         }
 
         if (lspExists) {
-            lspNameTextView.setText(lspName);
+            if (lspWikiURL.equals("")) {
+                lspNameTextView.setText(lspName);
+            } else {
+                lspNameTextView.setMovementMethod(LinkMovementMethod.getInstance());
+                String temp_lsp_url = "<a href=\"" + lspWikiURL + "\">" + lspName + "</a>️";
+                lspNameTextView.setText((Html.fromHtml(temp_lsp_url)));
+            }
         } else {
             lspNameTextView.setText("");
         }
