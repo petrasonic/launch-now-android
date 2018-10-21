@@ -9,8 +9,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:weightSum="10"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="3"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/launch_sm"/>
+            <!--use this link in the image view <TextView
+                android:id="@+id/detailed_rocket_image_url_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Image URL" />-->
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -155,58 +172,183 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dip"
             android:orientation="vertical"
-            android:layout_marginLeft="10dp">
-
-            <TextView
-                android:id="@+id/detailed_launch_label_textView"
-                android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="7">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start|center"
-                android:textSize="8pt"
-                android:layout_gravity="center"
-                android:text="Launch"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/detailed_launch_name_textView"
+                android:orientation="horizontal"
+                android:weightSum="1.0">
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:text="Status"/>
+                <TextView
+                    android:id="@+id/detailed_launch_status_textView"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:text="On Schedule"
+                    android:textColor="#4C8"
+                    android:gravity="right"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1.0">
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:text="Launch Service Provider"/>
+                <TextView
+                    android:id="@+id/detailed_lsp_name_textView"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:text="SpaceX"
+                    android:textColor="#08C"
+                    android:gravity="right"/>
+                <!-- clicking on the LSP name should go to this URL<TextView
+                android:id="@+id/detailed_lsp_wiki_url_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:text="Launch Name"/>
-
-            <TextView
-                android:id="@+id/detailed_launch_window_start_textView"
-                android:layout_width="wrap_content"
+                android:text="Launch Service Provider Wiki URL" />-->
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="Window Start"/>
+                android:orientation="horizontal"
+                android:weightSum="1.0">
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:text="Launch Vehicle"/>
+                <TextView
+                    android:id="@+id/detailed_rocket_name_textView"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:text="Falcon 9 Heavy"
+                    android:textColor="#08C"
+                    android:gravity="right"/>
+                <!-- use this link for when clicking on rocket name <TextView
+                    android:id="@+id/detailed_rocket_wiki_url_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="Wiki URL" />-->
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/detailed_launch_window_end_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="Window End" />
 
-            <TextView
-                android:id="@+id/detailed_launch_status_textView"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="Status" />
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/detailed_launch_vid_url_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="Video URL" />
+                <TextView
+                    android:id="@+id/detailed_launch_label_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center"
+                    android:textSize="8pt"
+                    android:layout_gravity="center"
+                    android:text="Launch Site"
+                    android:textStyle="bold"/>
+
+                <!-- this value should be in the action bar <TextView
+                    android:id="@+id/detailed_launch_name_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="Launch Name"/>-->
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1.0">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight=".8">
+                        <TextView
+                            android:id="@+id/detailed_location_name_textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="Location Name" />
+
+                        <TextView
+                            android:id="@+id/detailed_pad_agency_textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="Agency" />
+                    </LinearLayout>
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".2"
+                        android:src="@android:drawable/ic_dialog_map"/>
+
+                    <!-- use this link for the image button <TextView
+                        android:id="@+id/detailed_pad_map_url_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="Pad Map URL" />-->
+                </LinearLayout>
+
+                <!--<TextView
+                    android:id="@+id/detailed_launch_window_start_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="Window Start"/>
+
+                <TextView
+                    android:id="@+id/detailed_launch_window_end_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="Window End" />-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1.0">
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:text="21° Sunny" />
+                    <TextView
+                        android:id="@+id/detailed_launch_vid_url_textView"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:gravity="right"
+                        android:textColor="#08C"
+                        android:text="Watch Live ▶️" />
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -224,13 +366,6 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/detailed_location_name_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="Location Name" />
-
-            <TextView
                 android:id="@+id/detailed_country_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -244,63 +379,8 @@
                 android:gravity="start"
                 android:text="Pad Name" />
 
-            <TextView
-                android:id="@+id/detailed_pad_map_url_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="Pad Map URL" />
 
-            <TextView
-                android:id="@+id/detailed_pad_agency_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="Agency" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="10dp">
-
-            <TextView
-                android:id="@+id/detailed_rocket_label_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start|center"
-                android:textSize="8pt"
-                android:layout_gravity="center"
-                android:text="Rocket"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/detailed_rocket_name_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="Rocket Name" />
-
-            <TextView
-                android:id="@+id/detailed_rocket_wiki_url_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="Wiki URL" />
-
-            <TextView
-                android:id="@+id/detailed_rocket_image_url_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="Image URL" />
-
-
-
-        </LinearLayout>
+        </LinearLayout>-->
 
         <LinearLayout
             android:layout_marginTop="20dp"
@@ -326,6 +406,13 @@
                 android:gravity="start"
                 android:text="Mision Name" />
 
+            <TextView
+                android:id="@+id/detailed_mission_type_name_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Type Name" />
+
 
             <TextView
                 android:id="@+id/detailed_mission_description_textView"
@@ -334,52 +421,13 @@
                 android:gravity="start"
                 android:text="Mision Description" />
 
+            <!--Should say Read More and link to wiki page-->
             <TextView
                 android:id="@+id/detailed_mission_wiki_url_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:text="Wiki URL" />
-
-            <TextView
-                android:id="@+id/detailed_mission_type_name_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="Type Name" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="10dp">
-
-            <TextView
-                android:id="@+id/detailed_lsp_label_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start|center"
-                android:textSize="8pt"
-                android:layout_gravity="center"
-                android:text="Launch Service Provider"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/detailed_lsp_name_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="Launch Service Provider Name" />
-
-            <TextView
-                android:id="@+id/detailed_lsp_wiki_url_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="Launch Service Provider Wiki URL" />
+                android:text="Read More" />
 
         </LinearLayout>
 
