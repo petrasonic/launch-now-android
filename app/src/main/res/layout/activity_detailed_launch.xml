@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DetailedLaunchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/detailed_launch_label_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:textSize="8pt"
+                android:layout_gravity="center"
+                android:text="Launch"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/detailed_launch_name_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Launch Name"/>
+
+            <TextView
+                android:id="@+id/detailed_launch_window_start_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Window Start"/>
+
+            <TextView
+                android:id="@+id/detailed_launch_window_end_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Window End" />
+
+            <TextView
+                android:id="@+id/detailed_launch_status_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Status" />
+
+            <TextView
+                android:id="@+id/detailed_launch_vid_url_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Video URL" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/detailed_location_label_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:textSize="8pt"
+                android:layout_gravity="center"
+                android:text="Location"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/detailed_location_name_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Location Name" />
+
+            <TextView
+                android:id="@+id/detailed_country_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Country" />
+
+            <TextView
+                android:id="@+id/detailed_pad_name_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Pad Name" />
+
+            <TextView
+                android:id="@+id/detailed_pad_map_url_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Pad Map URL" />
+
+            <TextView
+                android:id="@+id/detailed_pad_agency_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Agency" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/detailed_rocket_label_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:textSize="8pt"
+                android:layout_gravity="center"
+                android:text="Rocket"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/detailed_rocket_name_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Rocket Name" />
+
+            <TextView
+                android:id="@+id/detailed_rocket_wiki_url_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Wiki URL" />
+
+            <TextView
+                android:id="@+id/detailed_rocket_image_url_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Image URL" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/detailed_mission_label_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:textSize="8pt"
+                android:layout_gravity="center"
+                android:text="Mission"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/detailed_mission_name_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Mision Name" />
+
+
+            <TextView
+                android:id="@+id/detailed_mission_description_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Mision Description" />
+
+            <TextView
+                android:id="@+id/detailed_mission_wiki_url_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Wiki URL" />
+
+            <TextView
+                android:id="@+id/detailed_mission_type_name_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Type Name" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/detailed_lsp_label_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:textSize="8pt"
+                android:layout_gravity="center"
+                android:text="Launch Service Provider"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/detailed_lsp_name_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Launch Service Provider Name" />
+
+            <TextView
+                android:id="@+id/detailed_lsp_wiki_url_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Launch Service Provider Wiki URL" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
